@@ -1,0 +1,46 @@
+﻿<div class="status-day-tab">
+    <div class="date"><span class="status-text">{{task.Deadline || '-'}}</span></div>
+    <div class="label">Изменений срока</div>
+    <div class="label_count_change" ng-click="onDeadlineLabelClick()">{{task.DeadlineLogs.length || '0'}}</div>
+
+    <div class="panel panel-default deadline-widget popup" ng-show="showDeadlinePopup">
+        <div class="panel-heading deadline-header">
+            Предыдущие даты
+            <span class="icon-cross btn-close" ng-click="onCloseClick()"></span>
+        </div>
+
+        <div class="c-deadlines-box list-group" ui-jq="karusel" ui-options='{"mode": "vertical", "prevBtnClass": "widget-arrow-up" , "nextBtnClass": "widget-arrow-down" , "scrollOffset": 50 , "containerSize": 220 }'>
+            <div class="list-group" ng-if="(!task.DeadlineLogs || !task.DeadlineLogs.length) && !isDeadlineChanged(task)">
+                <div class="list-group-item">
+                    Отсутствуют
+                </div>
+            </div>
+            <div class="list-group" ng-if="!task.edited">
+                <div class="list-group-item" ng-repeat="deadlineLog in task.DeadlineLogs" class="deadline" ng-class="{sortable: task.edited}">
+                    <span ng-show="!deadlineLog.oldValue">{{deadlineLog.Title}}</span>
+                    <input ng-show="deadlineLog.oldValue" class="date-input" type="text" ng-model="deadlineLog.Title" ng-required="!task.isNew" ui-jq="datepicker" validator="date" />
+                    <i ng-if="task.edited" title="Редактировать" class="fa fa-pencil color-middle-grey pointer" ng-click="onEditClick(deadlineLog)" ng-show="!deadlineLog.oldValue"></i>
+                    <i ng-if="task.edited" title="Удалить" class="fa fa-times pointer color-red" ng-click="onRemoveClick(deadlineLog)" ng-show="!deadlineLog.oldValue"></i>
+                    <i title="Сохранить" class="fa fa-check pointer color-dark-green edit-icon" ng-click="onSaveClick(deadlineLog)" ng-show="deadlineLog.oldValue"></i>
+                    <i title="Отменить" class="fa fa-ban pointer color-red edit-icon" ng-click="onCancelClick(deadlineLog)" ng-show="deadlineLog.oldValue"></i>
+                </div>
+            </div>
+
+            <div class="list-group" ng-if="task.edited" ui-sortable ng-model="task.DeadlineLogs">
+                <div class="list-group-item" ng-repeat="deadlineLog in task.DeadlineLogs" class="deadline" ng-class="{sortable: task.edited}">
+                    <span ng-show="!deadlineLog.oldValue">{{deadlineLog.Title}}</span>
+                    <input ng-show="deadlineLog.oldValue" class="date-input" type="text" ng-model="deadlineLog.Title" ng-required="!task.isNew" ui-jq="datepicker" validator="date" />
+                    <div class="row-controls">
+                        <i ng-if="task.edited" title="Редактировать" class="fa fa-pencil color-middle-grey pointer" ng-click="onEditClick(deadlineLog)" ng-show="!deadlineLog.oldValue"></i>
+                        <i ng-if="task.edited" title="Удалить" class="fa fa-times pointer color-red" ng-click="onRemoveClick(deadlineLog)" ng-show="!deadlineLog.oldValue"></i>
+                        <i title="Сохранить" class="fa fa-check pointer color-dark-green edit-icon" ng-click="onSaveClick(deadlineLog)" ng-show="deadlineLog.oldValue"></i>
+                        <i title="Отменить" class="fa fa-ban pointer color-red edit-icon" ng-click="onCancelClick(deadlineLog)" ng-show="deadlineLog.oldValue"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="isDeadlineChanged(task)">
+            <span>{{task.oldValue.Deadline}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿<button type="button" access="assistant;reception" ng-click="toggleEditedTaskMode()"
+    ng-show="task && !loading && task.edited && task.Id" class="button-gray">
+    <span class="icon-undo2"></span>
+    Отменить
+</button>
+<button type="button" access="assistant;reception" class="button-gray-delete"
+    ng-show="task && !loading && task.Id && !task.edited && !task.IsHidden"
+    ng-click="setTaskHidden(true)">
+    <span class="icon-cross"></span>
+    Удалить
+</button>
+<button type="button" access="assistant;reception" class="button-blue"
+    ng-show="task && !loading && task.Id && task.IsHidden" ng-click="setTaskHidden(false)">
+    Показать</button>
+<button type="button" class="button-gray"
+    ng-click="onTaskCardBackClick(createMvc('Task', 'Index').url)">
+    Закрыть</button>
+<button type="submit" access="assistant;reception" ng-click="task.isNew = false"
+        ng-show="task && !loading && task.edited" class="button-blue">
+    Сохранить
+</button>
+<button type="button" access="assistant;reception" ng-click="toggleEditedTaskMode()"
+    ng-show="task && !loading && !task.edited && !task.IsHidden" class="button-blue">
+    Изменить</button>

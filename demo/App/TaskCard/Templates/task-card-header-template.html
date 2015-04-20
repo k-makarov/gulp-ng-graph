@@ -1,0 +1,66 @@
+﻿<div class="filter-block">
+    <div class="tabs">
+        <div class="status-panel-tab">
+            <div class="status-tab-box row">
+                <div class="col-lg-3 hidden-md">
+                    <div class="status-type-tab status" ng-class="getStatusType()">
+                        <span class="status-text">{{task.Status.Title || 'не указано'}}</span>
+                    </div>
+                </div>
+                <div class="col-md-2 hidden-lg  hidden-sm hidden-xs">
+                    <div class="status-type-tab status" ng-class="getStatusTypeColor()">
+                        <span class="status-text" title="{{task.Status.Title || 'не указано'}}" ng-class="getStatusGlyphIcon()"></span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="status-day-tab">
+                        <div ng-if="taskInStatuses(statuses.Completed.Code, statuses.Formal.Code)" class="number green">
+                            <span class="status-text">0</span>
+                        </div>
+                        <div ng-if="taskInStatuses(statuses.InProcess.Code, statuses.Failed.Code, statuses.Hot.Code)" class="number" ng-class="getDeadlineColor()">
+                            <span class="status-text">{{task.DaysToDeadline || '0'}}</span>
+                        </div>
+                        <div ng-if="taskInStatuses(statuses.Completed.Code, statuses.Formal.Code, statuses.InProcess.Code)" class="label">
+                            дней до исполнения
+                        </div>
+                        <div ng-if="taskInStatuses(statuses.Failed.Code, statuses.Hot.Code)" class="label">
+                            просрочено дней
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="status-day-tab ">
+                        <div class="number green"><span class="status-text">{{task.Documents ? task.Documents.length : 0}}</span></div>
+                        <div class="label">документов в поручении</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <deadline-logs task="task"></deadline-logs>
+                </div>
+            </div>
+        </div>
+        <a ng-href="#/main" class="no-underline">
+            <div class="tab" ng-class="{'active': isActiveTab('/main')}"
+                element-required-model="task"
+                element-required-when="!task.isNew"
+                element-required="['TaskNumber', 'TaskContent', 'TaskDate', 'Deadline', 'Status', 'MainResponsible']">
+                Основное
+            </div>
+        </a>
+        <a ng-href="#/roles" class="no-underline">
+            <div class="tab"
+                ng-class="{'active': isActiveTab('/roles')}"
+                element-required-model="task"
+                element-required-when="!task.isNew"
+                element-required="['TaskType', 'Category', 'TaskKind', 'TaskAuthor']">
+                Роли
+            </div>
+        </a>
+        <a ng-href="#/documents" class="no-underline">
+            <div class="tab" ng-class="{'active': isActiveTab('/documents')}">Документы</div>
+        </a>
+        <a ng-href="#/relations" class="no-underline">
+            <div class="tab" ng-class="{'active': isActiveTab('/relations')}">Связи</div>
+        </a>
+    </div>
+</div>

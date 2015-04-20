@@ -1,0 +1,21 @@
+﻿<div class="dictionary-item-editor-content">
+    <h3 class="dictionaries-header">{{dictionaryItem.title}}</h3>
+    <table class="dictionary-item-editor-table ">
+        <tr ng-repeat="field in dictionaryItem.fields" ng-hide="field.IsDisabled">
+            <td class="dictionary-item-editor-table_label">
+                {{field.DisplayName}}
+            </td>
+            <td class="dictionary-item-editor-table_value">
+                <input type="text" ng-model="dictionaryItem.data[field.InternalName]" title="{{dictionaryItem.data[field.InternalName]}}" ng-if="!field.IsDate" />
+                <input type="text" ng-model="dictionaryItem.data[field.InternalName]" title="{{dictionaryItem.data[field.InternalName]}}" ui-jq="datepicker" ng-if="field.IsDate" />
+            </td>
+        </tr>
+    </table>
+    <div class="dictionary-item-editor-buttons">
+        <button class="button-blue" ng-click="onSaveButtonClick()">Сохранить</button>
+        <a class="back-button" ng-href="#/{{dictionaryItem.instance}}/{{(dictionaryItem.type || dictionaryItem.type === 0) ? dictionaryItem.typeDescriptor : ''}}">
+            <button class="button-gray">Назад</button>
+        </a>
+    </div>
+</div>
+

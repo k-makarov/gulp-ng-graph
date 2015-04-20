@@ -1,0 +1,28 @@
+﻿<div class="calls-grid">
+    <table class="table calls-table head">
+        <thead>
+            <tr class="calls-grid-header" sortable-table-header params="sortableTableHeaderParams" class="call-table-header-title"></tr>            
+        </thead>
+    </table>
+    <div class="calls-table-content" custom-scroll params="scrollParams">
+        <table class="table calls-table">
+            <tbody>
+                <tr ng-class="{stripe: $odd}" ng-repeat="call in Calls">
+                    <td class="grid-call-status-col">
+                        <div class="calls-grid-status" ng-class="getCallClass(call)">
+                            <div class="call-status-indicator small grid-call-status-indicator ">
+                                <input type="checkbox" />
+                            </div>
+                        </div>
+                    </td>
+                    <td class="call-grid-result"><div> {{CallStatus[call.Status].title}}</div><div> {{call.Result}}</div></td>
+                    <td class="call-grid-date"><div>{{call.Date| date : 'hh:mm'}}</div><div>{{call.Date| date : 'dd.MM.yyyy'}}</div></td>
+                    <td class="call-grid-person">{{call.Person}}</td>
+                    <td class="call-grid-purpose">{{call.Purpose}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

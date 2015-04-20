@@ -1,0 +1,232 @@
+﻿.dhx_cal_event.selected .dhx_body, .dhx_cal_event.dhx_cal_select_menu .dhx_body{ opacity: 1;}
+.dhx_cal_navline div.dhx_minical_icon { left:65px;}
+
+.tooltip.dhtmlXTooltip { z-index:1002;}
+.dhx_cal_container { z-index:1001;}
+
+.dhx_cal_event_line { color:#000000;}
+
+.dhx_cal_date {
+    width: auto !important;
+    left: 400px !important;
+    right: auto !important;
+}
+/* << Кастомизация */
+/* background color for whole container and it's border*/
+.event {
+    background-color: #add8e6;
+    border: 1px solid #778899;
+    overflow: hidden;
+}
+/* disabling default color for select menu */
+.dhx_cal_select_menu.event div {
+    border: 0;
+    background-color: transparent;
+    color: black;
+}
+/* styles for event content */
+.dhx_cal_event.event .event_body {
+    padding-top: 3px;
+    padding-left: 5px;
+}
+/* event's date information */
+.event .event_date {
+    font-weight: bold;
+    padding-right: 5px;
+}
+/* event's resizing section */
+.event_resize {
+    height: 3px;
+    position: absolute;
+    bottom: -1px;
+}
+/* event's move section */
+.event_move {
+    position: absolute;
+    top: 0;
+    height: 5px;
+    cursor: pointer;
+    background-color:transparent !important;
+    color:transparent !important;
+}
+/*
+.event_i div, .event_i{ 	background-color: #f690dd !important;	border-color: #f690dd !important; color:black !important;}
+.event_0 div, .event_0{ 	background-color: rgba(173, 232, 226, 0.75) !important;	border-color: rgba(173, 232, 226, 1) !important; color:black !important;}
+.event_1 div, .event_1{ 	background-color: rgba(209, 197, 255, 0.75) !important;	border-color: rgba(209, 197, 255, 1) !important; color:black !important;}
+.event_2 div, .event_2{ 	background-color: rgba(176, 227, 255, 0.75) !important;	border-color: rgba(176, 227, 255, 1) !important; color:black !important;}
+.event_3 div, .event_3{ 	background-color: rgba(206, 206, 000, 0.75) !important;	border-color: rgba(206, 206, 000, 1) !important; color:black !important;}
+.event_4 div, .event_4{ 	background-color: rgba(147, 220, 243, 0.75) !important;	border-color: rgba(147, 220, 243, 1) !important; color:black !important;}
+.event_5 div, .event_5{ 	background-color: rgba(253, 159, 149, 0.75) !important;	border-color: rgba(253, 159, 149, 1) !important; color:black !important;}
+*/
+.event_i div, .event_i{ 	background-color: red !important;	border-color: red !important; color:black !important;}
+.event_0 div, .event_0{ 	background-color: #f690dd !important;	border-color: #f690dd !important; color:black !important;}
+.event_1 div, .event_1{ 	background-color: rgba(173, 232, 226, 1) !important;	border-color: rgba(173, 232, 226, 1) !important; color:black !important;}
+.event_2 div, .event_2{ 	background-color: rgba(176, 227, 255, 1) !important;	border-color: rgba(176, 227, 255, 1) !important; color:black !important;}
+.event_3 div, .event_3{ 	background-color: rgba(206, 206, 000, 1) !important;	border-color: rgba(206, 206, 000, 1) !important; color:black !important;}
+.event_4 div, .event_4{ 	background-color: rgba(209, 197, 255, 1) !important;	border-color: rgba(209, 197, 255, 1) !important; color:black !important;}
+.event_5 div, .event_5{ 	background-color: rgba(253, 159, 149, 1) !important;	border-color: rgba(253, 159, 149, 1) !important; color:black !important;}
+
+
+/* >> Кастомизация */
+#ActivityTypeSelector { height:50px;}
+#ActivityTypeSelector table { border-width:0px; height:50px; width:100%;}
+#ActivityTypeSelector td { text-align:center; vertical-align:central; height:50px;}
+/*
+#ActivityTypeSelector td.ActivityType0 { background-color:rgba(173, 232, 226, 1);}
+#ActivityTypeSelector td.ActivityType1 { background-color:rgba(209, 197, 255, 1);}
+#ActivityTypeSelector td.ActivityType2 { background-color:rgba(176, 227, 255, 1);}
+#ActivityTypeSelector td.ActivityType3 { background-color:rgba(206, 206, 000, 1);}
+#ActivityTypeSelector td.ActivityType4 { background-color:rgba(147, 220, 243, 1);}
+#ActivityTypeSelector td.ActivityType5 { background-color:rgba(253, 159, 149, 1);}
+*/
+#ActivityTypeSelector td.ActivityType0 { background-color:#f690dd;}
+#ActivityTypeSelector td.ActivityType1 { background-color:rgba(173, 232, 226, 1);}
+#ActivityTypeSelector td.ActivityType2 { background-color:rgba(176, 227, 255, 1);}
+#ActivityTypeSelector td.ActivityType3 { background-color:rgba(206, 206, 000, 1);}
+#ActivityTypeSelector td.ActivityType4 { background-color:rgba(209, 197, 255, 1);}
+#ActivityTypeSelector td.ActivityType5 { background-color:rgba(253, 159, 149, 1);}
+
+/* Замена стиля Flat */
+.dhx_cal_container { font-size:inherit;  font-family:inherit;}
+
+.dhx_section_time input[type=text] {
+    font-size: 12px;
+}
+
+.dhx_section_time select {
+    border: 1px solid #ccc;
+    font-family: inherit;
+    box-sizing: border-box;
+    font-size: 12px;
+    border-radius: 5px;
+    background: #F2F2F2;
+    width:60px;
+    -webkit-appearance: none;
+    background-image: url('../../../Content/Images//grid-sort-btn.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+    line-height: 1em;
+    /* for FF */
+    -moz-appearance: none;
+    text-indent: 0.01px; 
+    text-overflow: '';
+    /* for IE */
+    -ms-appearance: none;
+    appearance: none!important;
+}
+.dhx_section_time select::-ms-expand {
+  display: none;
+}
+.dhx_section_time option {
+    font-family: inherit;
+    font-size: 15px;
+}
+
+
+/*participants in litebox*/
+.lb_participants { font-size:10pt;  font-family:inherit; height:50px; font-size:9pt;}
+.lb_participant{ 
+    display:inline-block; 
+    background-color:rgba(147, 220, 243, 0.5); 
+    border-bottom-width:1px;
+    border-radius:3px; 
+    border-color:rgba(147, 220, 243,1); 
+    margin:1px; 
+    padding:1px; 
+    font-family:inherit; 
+}
+.lb_participant img {  position: relative;  top: 3px;}
+
+
+.lb_files { font-size:10pt;  font-family:inherit; height:50px; font-size:9pt;}
+.lb_file{ 
+    display:inline-block; 
+    background-color:rgba(147, 220, 243, 0.5); 
+    border-bottom-width:1px;
+    border-radius:3px; 
+    border-color:rgba(147, 220, 243,1); 
+    margin:1px; 
+    padding:1px; 
+    font-family:inherit; 
+}
+.lb_file img {  position: relative;  top: 3px;}
+
+.participants .ui-dialog-content { margin:0px!important;; padding:1px!important;;}
+.participants .ui-dialog-buttonpane { margin:0px!important;; padding:1px!important;;}
+.participants .ui-dialog-titlebar {  display: none;}
+.participants .ui-dialog-buttonset { float:none!important;}
+.participants .ui-dialog-buttonset button:hover{ }
+.participants .ui-dialog-buttonset button:first-child { 
+    float:left;
+    border: none;
+    color: #fff;
+    background: #5B9BE0;
+    border-radius:0px;
+    font-family: "Segoe UI",Arial;
+    font-size: 13px;
+    font-weight:normal;
+    width:150px; height:35px;
+}
+.participants .ui-dialog-buttonset button:last-child { 
+    float:right;
+    border: none;
+    background: #FE7510;
+    color: #fff;
+    border-radius:0px;
+    font-family: "Segoe UI",Arial;
+    font-size: 13px;
+    font-weight:normal;
+    width:75px; height:35px;
+}
+
+.participants #ParticipantsListDiv {   height:500px;   overflow-y:hidden;}
+.participants .ParticipantsList { width:100%}
+.participants .ParticipantsList table { border:none; margin:1px;  width:100%}
+.participants .ParticipantsList table tr td:first-child { vertical-align:middle; text-align:center  }
+
+.participants .ParticipantsList .name { font-size:12pt; margin-top:0px; margin-bottom:3px   }
+.participants .ParticipantsList .position { font-size:8pt; margin:0px;   }
+.participants .ParticipantsList .contacts { font-size:8pt;   }
+
+.participants #searchParticipants {    width: 320px!important;}
+.participants #searchParticipantsText {    width: 290px!important;}
+.participants #btnSearchParticipants{
+    display: inline-block;
+    width: 25px;
+    height: 23px;
+    margin-bottom: -7px;
+    margin-left:5px;
+    background: url('../../../Content/Images/search.png') no-repeat;    
+}
+.participants #btnSearchParticipants:hover {   cursor:pointer;}
+.participants #participants_sel { padding-left:2px; padding-right:2px;}
+
+.participants .paginator { width:100%;}
+.participants .paginator tr td { text-align:center; }
+.participants .paginator tr td a{ text-align:center; font-size:10pt; text-decoration:none; padding: 0 2px; }
+.participants .paginator tr td a.current { font-weight: bold;  }
+
+.activityToolBar .btnActivityAdd { float:right;}
+.activityToolBar .btnActivityExport { float:right;}
+
+.activityToolBar .filter {}
+.activityToolBar input[name=searchActivity] {
+    width: 470px;
+    height: 40px;
+    margin-right: -45px;
+    padding-left: 20px;    
+}
+.activityToolBar input[name=searchActivity]::-ms-clear {
+    display:none;
+}
+
+.activityToolBar .search-task-icon {
+    display: inline-block;
+    width: 25px;
+    height: 23px;
+    margin-bottom: -7px;
+    margin-left:5px; 
+    background: url('../../../Content/Images/search.png') no-repeat; 
+}
+
+.activitytypes_sel > div { display:inline-block; }

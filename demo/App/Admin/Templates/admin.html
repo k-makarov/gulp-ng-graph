@@ -1,0 +1,70 @@
+﻿<div class="users-block">
+    <button type="button" class="green" ng-click="openAddUserDialog()">Добавить</button>
+    <table class="users-table">
+        <caption>Пользователи</caption>
+        <tr>
+            <th class="login">Логин</th>
+            <th>Имя</th>
+            <th class="role">Роль</th>
+            <th class="edit"></th>
+            <th class="delete"></th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td>{{user.Login}}</td>
+            <td>{{user.Name}}</td>
+            <td>{{user.RolesString}}</td>
+            <td><a class="pseudo-link" href="" ng-click="openEditUserDialog(user)">редактировать</a></td>
+            <td><a class="pseudo-link delete" ng-hide="user.Login === currentUserLogin" href="" ng-click="deleteUser(user)">удалить</a></td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/ng-template" id="editUserDialog">
+    <div class="edit-user-block">
+        <h2>{{options.userDialogHeader}}</h2>
+        <form novalidate name="options.userForm">
+            <table>
+                <tr>
+                    <td>
+                        Логин:
+                    </td>
+                    <td>
+                        <input ng-disabled="options.isEdit" type="text" ng-model="user.login" required  ng-class="{submitted: options.userForm.$submitted}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Пароль:
+                    </td>
+                    <td>
+                        <input type="password" ng-model="user.password" name="password" ng-required="!options.isEdit" ng-class="{submitted: options.userForm.$submitted}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Имя:
+                    </td>
+                    <td>
+                        <input type="text" ng-model="user.name" required ng-class="{submitted: options.userForm.$submitted}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Роль:
+                    </td>
+                    <td>
+                        <select ng-options="item.name for item in roles track by item.code" ng-model="user.selectedRole" required ng-class="{submitted: options.userForm.$submitted}"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="submit-btn">
+                        <button type="button" class="green" ng-click="closeThisDialog()">Отмена</button>              
+                        <button ng-show="!options.isEdit" type="submit" class="green" ng-click="addUser()">Добавить</button>
+                        <button ng-show="options.isEdit" type="submit" class="green" ng-click="editUser()">Сохранить</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</script>

@@ -1,0 +1,72 @@
+﻿<div class="filter-block">
+    <div class="activityToolBar">
+        <form name="activityFilterForm">
+            <div class="filter-top-row">
+                <div class="filter search-task">
+                    <input type="text" id="searchActivityText" name="searchActivity" ng-model="filter.Activity" placeholder="ПОИСК МЕРОПРИЯТИЙ" onblur="scheduler.ShearchActivity()">
+                    <label for="searchActivity" onclick="scheduler.ShearchActivity()">
+                        <span class="search-task-icon"></span>
+                    </label>
+                </div>
+                <div class="filter filter-top-row-buttons">
+                    <button type="button" class="button-green-create" onclick="scheduler.addActivity()">
+                        <span class="button-icon icon-plus"></span>
+                        НОВОЕ МЕРОПРИЯТИЕ
+                    </button>
+                    <button type="button" ng-disabled="taskFilterForm.$invalid" ng-click="" class="button-gray-export">
+                        <span class="button-icon"></span>
+                        Экспорт
+                    </button>
+                    
+                </div>
+            </div>
+            <div id="activitytypes_sel" class="activitytypes_sel">
+                <div class="event_i">
+                    <label>
+                        <input id="atype_sel_important" type="checkbox" value="1" onchange="scheduler.ShearchActivity()" />Важные!
+                    </label>
+                </div>
+                <div class="event_0">
+                    <label>
+                        <input id="atype_sel_0" class="atype_sel" type="checkbox" value="0" onchange="scheduler.ShearchActivity()" />с участием Путина</label>
+                </div>
+                <div class="event_1">
+                    <label>
+                        <input id="atype_sel_1" class="atype_sel" type="checkbox" value="1" onchange="scheduler.ShearchActivity()" />с участием Медведева</label>
+                </div>
+                <div class="event_2">
+                    <label>
+                        <input id="atype_sel_2" class="atype_sel" type="checkbox" value="2" onchange="scheduler.ShearchActivity()" />Рабочая поездка</label>
+                </div>
+                <div class="event_3">
+                    <label>
+                        <input id="atype_sel_3" class="atype_sel" type="checkbox" value="3" onchange="scheduler.ShearchActivity()" />Личные дела</label>
+                </div>
+                <div class="event_4">
+                    <label>
+                        <input id="atype_sel_4" class="atype_sel" type="checkbox" value="4" onchange="scheduler.ShearchActivity()" />Брифинг/интервью</label>
+                </div>
+                <div class="event_5">
+                    <label>
+                        <input id="atype_sel_5" class="atype_sel" type="checkbox" value="5" onchange="scheduler.ShearchActivity()" />День рождения</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id='activities_scheduler' class='dhx_cal_container' style='height: 700px'>
+    <div class='dhx_cal_navline'>
+        <!--<div class='dhx_cal_tab' name='day_tab'></div> -->
+        <div class='dhx_cal_tab' name='week_tab'></div>
+        <div class='dhx_cal_tab' name='month_tab'></div>
+        <!--<div class='dhx_cal_tab' name='year_tab'></div> -->
+        <div class='dhx_cal_tab' name='grid_tab'></div>
+        <div class='dhx_minical_icon' id='dhx_minical_icon' onclick='scheduler.show_minical()'>&nbsp;</div>
+        <div class='dhx_cal_date' style='left: 550px; width: 300px;'></div>
+        <div class='dhx_cal_today_button'></div>
+        <div class='dhx_cal_prev_button'>&nbsp;</div>
+        <div class='dhx_cal_next_button'>&nbsp;</div>
+    </div>
+    <div class='dhx_cal_header'></div>
+    <div class='dhx_cal_data'></div>
+</div>

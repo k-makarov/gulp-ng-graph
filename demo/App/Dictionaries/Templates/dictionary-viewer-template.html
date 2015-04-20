@@ -1,0 +1,23 @@
+﻿<h3 class="dictionaries-header">{{dictionary.title}}</h3>
+<div class="buttons-panel">
+    <button class="button-blue" ng-click="onAddButtonClick()">Добавить</button>
+    <a href="#/" class="back-button"><button class="button-gray">Назад</button></a>
+</div>
+<table class="table" ng-show="dictionary.data.length">
+    <thead>
+        <tr>
+            <th ng-repeat="field in dictionary.fields">{{field.DisplayName}}</th>
+            <th class="width-15">&nbsp;</th>
+            <th class="width-15">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in dictionary.data">
+            <td ng-repeat="field in dictionary.fields">{{item[field.InternalName] || '-'}}</td>
+            <td>
+                <a ng-href="#/{{dictionary.instance}}/Edit/{{item.Id}}/{{getDictionaryUrlEnding()}}"><i class="fa fa-pencil pointer color-middle-grey" title="Редактировать"></i></a>
+            </td>
+            <td><i class="fa fa-times pointer color-red" title="Удалить" ng-click="onRemoveDictionaryItemClick(item)"></i></td>
+        </tr>
+    </tbody>
+</table>

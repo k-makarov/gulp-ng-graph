@@ -1,0 +1,4 @@
+﻿<th ng-repeat="column in params.columns" ng-class="getColumnClass(column)" ng-click="setOrder(column)">
+    <span ng-bind-html="getColumnTitle(column)"></span>
+    <span ng-show="isSortable(column) && params.enabled" ng-bind-html="getOrderText(column)"></span>
+</th>

@@ -1,0 +1,142 @@
+﻿<div>
+    <form name="taskFilterForm">
+        <div class="filter-top-row">
+            <div class="filter search-task">
+                <angucomplete
+                    pause="400"
+                    url="{{create('Task', 'FindByNumber').url + '?searchKey='}}"
+                    searchfields="TaskNumber"
+                    titlefield="TaskNumber"
+                    additionalfield="TaskDate"
+                    minlength="1"
+                    selectedobject="selectedAngucompleteTask"
+                    searchingplaceholder="Поиск..."
+                    noresultsplaceholder="Не найдено"
+                    placeholder="Поиск поручения по номеру"/>
+                <label for="searchTask">
+                    <span class="search-task-icon" ng-click="apply()"></span>
+                </label>
+            </div>
+            <div class="filter filter-top-row-buttons">
+                    <button type="button" class="button-green" ng-click="onCreateNewTaskClick(createMvc('Task', 'New').url)" access="assistant;reception">
+                        <span class="button-icon icon-plus"></span>
+                        Создать поручение
+                    </button>
+                <button type="button" ng-disabled="taskFilterForm.$invalid" ng-click="export()"
+                    class="button-gray-export">
+                    <span class="button-icon"></span>
+                    Экспорт
+                </button>
+            </div>
+        </div>
+        <div class="filter-extended ng-hide" ng-show="params.extended">
+            <div class="row">
+                <div class="filter  col-xs-4">
+                    <input type="text" ng-model="filter.TaskContent" 
+                        name="contentFilter" 
+                        placeholder="Содержание" jquery-placeholder>
+                    <span class="search-icon"></span>
+                </div>
+                <div class="separate-line"></div>
+                <div class="filter col-xs-4">
+                    <select chosen="{allow_single_deselect: true}"
+                            data-placeholder="Ответственный исполнитель"
+                            ng-model="filter.ResponsibleId"
+                            ng-options="responsible.Id as responsible.Title for responsible in responsiblesDictionary">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="separate-line"></div>
+                <div class="filter col-xs-4">
+                    <div class="row">
+                        <div class="col-xs-4 filter-label">Срок исполнения</div>
+                        <div class="col-xs-4 date-filter">
+                            <input type="text" ng-model="filter.DeadlineFrom" 
+                                ui-jq="datepicker" validator="date" less-than="{{filter.DeadlineTo}}"
+                                placeholder="с" jquery-placeholder>
+                        </div>
+                        <div class="col-xs-4 date-filter">
+                            <input type="text" ng-model="filter.DeadlineTo" 
+                                ui-jq="datepicker" validator="date" greater-than="{{filter.DeadlineFrom}}"
+                                placeholder="по" jquery-placeholder>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="filter col-xs-4">
+                    <select chosen multiple
+                            data-placeholder="Состояние"
+                            ng-model="filter.StatusIds"
+                            ng-options="item.Id as item.Title for item in taskStatusesDictionary">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="separate-line"></div>
+                <div class="filter col-xs-4">
+                    <select chosen multiple
+                            data-placeholder="Исполнители"
+                            ng-model="filter.Responsibles"
+                            ng-options="responsible.Id as responsible.Title for responsible in responsiblesDictionary">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="separate-line"></div>
+                <div class="filter col-xs-4">
+                    <div class="row">
+                        <div class="col-xs-4 filter-label">Дата поручения</div>
+                        <div class="col-xs-4 date-filter">
+                            <input type="text" ng-model="filter.AssignmentDateFrom" 
+                                ui-jq="datepicker" validator="date" less-than="{{filter.AssignmentDateTo}}"
+                                placeholder="с" jquery-placeholder>
+                        </div>
+                        <div class="col-xs-4 date-filter">
+                            <input type="text" ng-model="filter.AssignmentDateTo" 
+                                ui-jq="datepicker" validator="date" greater-than="{{filter.AssignmentDateFrom}}"
+                                placeholder="по" jquery-placeholder>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="filter col-xs-4">
+                    <input type="text" ng-model="filter.ExecutionLog" 
+                        placeholder="Отметка об исполнении" jquery-placeholder>
+                     <span class="search-icon"></span>
+                </div>
+                <div class="separate-line"></div>
+                <div class="filter col-xs-4">
+                     <select chosen="{allow_single_deselect: true}"
+                             data-placeholder="Департамент"
+                             ng-model="filter.DepartmentId"
+                             ng-options="department.Id as department.Title for department in departmentsDictionary">
+                         <option value=""></option>
+                     </select>
+                </div>
+                <div class="separate-line"></div>
+                <div class="filter col-xs-4">
+                    <div class="row">
+                        <div class="col-xs-4 filter-label">Дата снятия с контроля</div>
+                        <div class="col-xs-4 date-filter">
+                            <input type="text" ng-model="filter.RemovedFromControlDateFrom" 
+                                ui-jq="datepicker" validator="date" less-than="{{filter.RemovedFromControlDateTo}}"
+                                placeholder="с" jquery-placeholder>
+                        </div>
+                        <div class="col-xs-4 date-filter">
+                            <input type="text" ng-model="filter.RemovedFromControlDateTo" 
+                                ui-jq="datepicker" validator="date" greater-than="{{filter.RemovedFromControlDateFrom}}"
+                                placeholder="по" jquery-placeholder>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-buttons">
+                <button type="button" ng-click="clear()" class="button-gray">Сбросить фильтры</button>
+                <button type="button" ng-disabled="taskFilterForm.$invalid" ng-click="apply()" class="button-blue">Найти поручения</button>
+            </div>
+        </div>
+    </form>
+    <!--div class="filters-titles-block" ng-show="!params.extended">
+        <span class="filter-title" ng-repeat="filterTitle in filterTitles">{{filterTitle.title}}:&nbsp;{{filterTitle.value}}</span>
+    </div-->
+</div>

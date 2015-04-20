@@ -1,0 +1,94 @@
+﻿<div class="tasks-grid">
+    <table class="table tasks-table">
+        <thead>
+            <tr class="tasks-grid-header" sortable-table-header params="sortableTableHeaderParams"></tr>
+        </thead>
+    </table>
+    <div class="task-grid-content" ng-class="{'loading': loading, 'narrow': isFilterExtended}" custom-scroll params="{id: 'tasks-grid'}">
+        <table class="table tasks-table">
+            <thead>
+                <tr class="hidden-header">
+                    <th class="width-70"></th>
+                    <th class="width-110"></th>
+                    <th></th>
+                    <th class="width-100"></th>
+                    <th class="width-150"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="category in categories"
+                   ng-include="'task-category-row-template'" include-replace>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/ng-template" id="task-category-row-template">
+        <tbody>
+            <tr ng-show="isCategoryVisible(category)" class="task-category" ng-class="{uppercase: category.descriptor.uppercase}">
+                <td colspan="1" class="center">
+                    <div class="task-status-indicator" ng-class="taskStatusIndicator[category.Id].cssClass"
+                        title="{{taskStatusIndicator[category.Id].title}}"
+                        ng-if="category.descriptor.type == 'status'"></div>
+                    <!--div class="center">
+                        <input type="checkbox" class="big-checkbox" ng-if="category.descriptor.checkbox">
+                    </div-->
+                </td>
+                <td colspan="5" ng-click="toggleCategory(category)" class="pointer">
+                    <div class="task-category-expand-button" ng-class="{expanded: category.isExpanded}"
+                        ng-style="{'margin-left': category.level * 15}"></div>
+                    <span class="task-category-title">{{category.Title}}</span>
+                    <span class="task-category-tasks-count">({{category.TasksAmount}})</span>
+                </td>
+            </tr>
+        </tbody>
+        <tbody ng-show="category.loading">
+            <tr>
+                <td colspan="6">
+                    <div class="loading" style="height: 32px"></div>
+                </td>
+            </tr>
+        </tbody>
+        <tbody ng-repeat="category in category.subCategories"
+            ng-include="'task-category-row-template'" include-replace></tbody>
+        <tbody ng-show="isCategoryExpanded(category) && !category.loading"
+            ng-repeat="task in category.tasks">
+            <tr ng-class="{stripe: $odd}" id="task-row-{{task.Id}}">
+                <td class="grid-task-status-col">
+                    <div class="grid-task-status-col-container">
+                        <div class="task-status-indicator small grid-task-status-indicator" ng-class="taskStatusIndicator[task.StatusId].cssClass"
+                            title="{{taskStatusIndicator[task.StatusId].title}}"></div>
+                        <div class="grid-task-links">
+                            <a href="{{createMvc('Task', 'Card', { id: task.Id }).url + '#/documents'}}"
+                                title="Документы" class="no-decoration" ng-show="task.HasDocuments">
+                                <div class="grid-task-links-documents"></div>
+                            </a>
+                            <div class="grid-task-links-documents disabled" ng-show="!task.HasDocuments"></div>
+                            <a href="{{createMvc('Task', 'Card', { id: task.Id }).url + '#/relations'}}"
+                                title="Связанные поручения" class="no-decoration" ng-show="task.HasLinks">
+                                <div class="grid-task-links-links"></div>
+                            </a>
+                            <div class="grid-task-links-links disabled" ng-show="!task.HasLinks"></div>
+                        </div>
+                        <!--div class="center">
+                            <input type="checkbox" class="big-checkbox grid-task-checkbox" />
+                        </div-->
+                    </div>
+                </td>
+                <td>
+                    <div><a href="{{createMvc('Task', 'Card', { id: task.Id }).url}}">{{task.TaskNumber}}</a></div>
+                    <div ng-show="task.TaskDate">от {{task.TaskDate | date:'dd.MM.yyyy'}}</div>
+                </td>
+                <td>{{task.TaskContent}}</td>
+                <td><div ng-repeat="deadlineDate in task.DeadlineDates track by $index">{{deadlineDate | date : 'dd.MM.yyyy'}}</div></td>
+                <td><div ng-repeat="responsible in task.Responsibles">{{responsible + ($last ? '' : ',')}}</div></td>
+                <td ng-bind-html="task.ExecutionLog"></td>
+            </tr>
+        </tbody>
+        <tbody ng-show="isCategoryExpanded(category) && category.showPagination">
+            <tr>
+                <td colspan=6>
+                    <div pagination params="category.paginationParams"></div>
+                </td>
+            </tr>
+        </tbody>
+    </script>
+</div>

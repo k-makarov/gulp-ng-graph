@@ -1,0 +1,81 @@
+﻿<div class="filter-block">
+    <div class="activityToolBar">
+        <form name="activityFilterForm">
+            <div class="filter-top-row">
+                <div class="filter search-task">
+                    <input type="text" id="searchActivityText" name="searchActivity" ng-model="filter.Activity" placeholder="ПОИСК МЕРОПРИЯТИЙ" onblur="scheduler.ShearchActivity()" onkeydown="EnterGo(event, scheduler.ShearchActivity)">
+                    <label for="searchActivity" onclick="scheduler.ShearchActivity()">
+                        <span class="search-task-icon" ng-click="scheduler.ShearchActivity()"></span>
+                    </label>
+                </div>
+                <div class="filter filter-top-row-buttons">
+                    <button type="button" class="button-green" onclick="scheduler.addActivity()">
+                        <span class="button-icon icon-plus"></span>
+                        НОВОЕ МЕРОПРИЯТИЕ
+                    </button>
+                    <button type="button" ng-disabled="taskFilterForm.$invalid" ng-click="" class="button-gray-export">
+                        <span class="button-icon"></span>
+                        Экспорт
+                    </button>                    
+                </div>
+            </div>
+            <div id="activitytypes_sel" class="activitytypes_sel">
+                <!--div class="event_i">
+                    <label>
+                        <input id="atype_sel_important" type="checkbox" value="1" onchange="scheduler.ShearchActivity()" />Важные!
+                    </label>
+                </div-->
+                <div class="activitytypes_sel_td event_0">                    
+                    <input id="atype_sel_0" class="atype_sel" type="checkbox" value="0" checked="checked" onchange="scheduler.ShearchActivity()" />
+                    <label for="atype_sel_0">с участием В.Путина</label>
+                </div>
+                <div class="activitytypes_sel_td event_1">                    
+                    <input id="atype_sel_1" class="atype_sel" type="checkbox" value="1" checked="checked" onchange="scheduler.ShearchActivity()" />
+                    <label for="atype_sel_1">с участием Д.Медведева</label>
+                </div>
+                <div class="activitytypes_sel_td event_2">                    
+                    <input id="atype_sel_2" class="atype_sel" type="checkbox" value="2" checked="checked" onchange="scheduler.ShearchActivity()" />
+                    <label for="atype_sel_2">Рабочая поездка</label>
+                </div>
+                <div class="activitytypes_sel_td event_3">                    
+                    <input id="atype_sel_3" class="atype_sel" type="checkbox" value="3" checked="checked" onchange="scheduler.ShearchActivity()" />
+                    <label for="atype_sel_3">С участием С.Иванова</label>
+                </div>
+                <div class="activitytypes_sel_td event_4">
+                    <input id="atype_sel_4" class="atype_sel" type="checkbox" value="4" checked="checked" onchange="scheduler.ShearchActivity()" />
+                    <label for="atype_sel_4">Брифинг/интервью</label>
+                </div>
+                <!--
+                <div class="activitytypes_sel_td event_5">                    
+                    <input id="atype_sel_5" class="atype_sel" type="checkbox" value="5" checked="" onchange="scheduler.ShearchActivity()" />
+                    <label for="atype_sel_5">День рождения</label>
+                </div>
+                -->
+            </div>
+         </form>
+     </div>
+</div>
+
+<script>
+(function (window, document, $) {
+    var inputs = $('input.atype_sel').each(function() {    $(this).prettyCheckable({ color: 'none'    }); });
+})(window, document, jQuery);
+
+</script>
+<div id='activities_scheduler' class='dhx_cal_container'>
+    <div class='dhx_cal_navline'>
+        <!--<div class='dhx_cal_tab' name='day_tab'></div> -->
+        <div class='dhx_cal_tab' name='week_tab'></div>
+        <div class='dhx_cal_tab' name='month_tab'></div>
+        <!--<div class='dhx_cal_tab' name='year_tab'></div> -->
+        <div class='dhx_cal_tab' name='grid_tab'></div>
+        <div class='dhx_minical_icon' id='dhx_minical_icon' onclick='scheduler.show_minical()'>&nbsp;</div>
+        <div class='dhx_cal_date' style='left: 550px; width: 300px;'></div>
+        <div class='dhx_cal_today_button'></div>
+        <div class='dhx_cal_prev_button'>&nbsp;</div>
+        <div class='dhx_cal_next_button'>&nbsp;</div>
+    </div>
+    <div class='dhx_cal_header'></div>
+    <div class='dhx_cal_data'></div>
+</div>
+

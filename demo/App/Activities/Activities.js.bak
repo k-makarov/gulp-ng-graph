@@ -1,0 +1,19 @@
+﻿
+(function () {
+alert('1')
+    var run = function () {    };
+    var mod = angular.module('activities', ['chat', 'tasks.calendar', 'important.activities']);
+    mod.directive("activities", function () {
+        return {
+            restrict: "A"//E for element
+            , replace: false
+            , templateUrl: GlobalContext.getTemplateUrl('Activities/Templates/sheduler.html')
+            , link: function (scope, element, attrs) {
+                var e = element[0];
+                var ASheduler = new ActivitySheduler('activities_scheduler', new Date(), 'week', 'angular');
+                ASheduler.Init();
+            }
+        };
+    });
+//    mod.config(configuration).run([run]);
+})();

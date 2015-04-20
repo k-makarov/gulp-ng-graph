@@ -1,0 +1,9 @@
+﻿<div class="status-switcher" role="toolbar" ng-class="{'btn-group': edited}" ng-model="task.Status" ng-required="!isNew">
+    <div ng-repeat="availableStatus in statusesArray | orderBy:'+Order'" class="btn btn-default switcher-item glyphicon {{availableStatus.StatusClass}} "
+         role="group"
+         title="{{availableStatus.Title}}"
+         ng-class="{'selected' : task.Status.Id === availableStatus.Code && edited, 'current': task.Status.Id === availableStatus.Code && !edited}"
+         ng-show="isStatusVisible(availableStatus.Code)"
+         ng-click="onStatusClick(availableStatus.Code)">
+    </div>
+</div>

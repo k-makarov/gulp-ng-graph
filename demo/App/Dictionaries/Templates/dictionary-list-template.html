@@ -1,0 +1,21 @@
+﻿<h3 class="dictionaries-header">Справочники системы</h3>
+<table class="dictionaries-list">
+    <tr ng-repeat ="dictionary in [
+        {url: '#/HolidaysAndWorkingDays', title: 'Праздничные и рабочие дни'},
+        {url: '#/Responsibles/Author', title: 'Авторы'},
+        {url: '#/Responsibles/Responsible', title: 'Ответственные'},
+        {url: '#/Responsibles/Department', title: 'Департаменты'},
+        {url: '#/Responsibles/Curator', title: 'Кураторы'},
+        {url: '#/Participants', title: 'Участники'}]">
+        <td>
+            <a href="{{dictionary.url}}">
+                <div class="dictionary-icon"></div>
+            </a>
+        </td>
+        <td>
+            <a href="{{dictionary.url}}">
+                <span class="dictionary-title">{{dictionary.title}}</span>
+            </a>
+        </td>
+    </tr>
+</table>

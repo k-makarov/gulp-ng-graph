@@ -1,0 +1,33 @@
+﻿<div ng-show="task && !loading">
+    <div class="card_content">
+        <table class="table relations-table" ng-show="task.LinkedTasks.length > 0">
+            <thead>
+                <tr>
+                    <th class="width-70">&nbsp;</th>
+                    <th class="width-150">Номер</th>
+                    <th>Содержание</th>
+                    <th class="width-15">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="link-item-grid" ng-repeat="linkedTask in task.LinkedTasks">
+                    <!--td class="task-status-indicator work"></td-->
+                    <td>
+                        <div class="task-status-indicator {{getForLinkedTaskStatus(linkedTask).cssClass}}" title="{{getForLinkedTaskStatus(linkedTask).title}}"></div>
+                    </td>
+                    <td>
+                        <a href="{{createMvc('Task', 'Card', { id: linkedTask.Id }).url}}" target="_blank">
+                            {{linkedTask.TaskNumber}}
+                        </a>
+                    </td>
+                    <td>{{linkedTask.TaskContent}}</td>
+                    <td><i ng-if="task.edited" class="fa fa-times pointer color-red" title="Удалить" ng-click="onRemoveLinkedTaskClick(linkedTask)"></i></td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-if="task.edited">
+            <button type="button" class="button-gray" ng-click="onBindWithTaskClick()">Связать с поручением</button>
+        </div>
+    </div>
+    <task-info task="task"/>
+</div>

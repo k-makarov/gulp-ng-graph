@@ -1,0 +1,124 @@
+﻿<div ng-show="task && !loading">
+    <div class="card_content form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Номер</label>
+            <div class="col-xs-3">
+                <input class="form-control" ng-if="task.edited" type="text" ng-required="!task.isNew" ng-model="task.TaskNumber" placeholder="Введите номер поручения" />
+                <span ng-if="!task.edited">{{task.TaskNumber}}</span>
+            </div>
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Состояние</label>
+            <div class="col-xs-5" ng-model="task.Status" ng-required="!task.isNew" ng-class="{'col-xs-1': !task.edited}">
+                <task-status-switcher ng-if="task" task="task" edited="task.edited" is-new="task.isNew" statuses="statuses"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Содержание поручения</label>
+            <div class="col-xs-10">
+                <textarea class="col-xs-12 form-control" ng-if="task.edited" rows="7" ng-required="!task.isNew" ng-model="task.TaskContent" placeholder="Введите содержание поручения" />
+                <span ng-if="!task.edited">{{task.TaskContent}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Краткое содержание</label>
+            <div class="col-xs-10">
+                <textarea class="col-xs-12 form-control" ng-if="task.edited" rows="3" ng-model="task.Summary" />
+                <span ng-if="!task.edited">{{task.Summary}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Дата поручения</label>
+            <div class="col-xs-4">
+                <input ng-if="task.edited" type="text" class="date-input form-control" ng-required="!task.isNew" ng-model="task.TaskDate" ui-jq="datepicker" validator="date" placeholder="Выберите дату" />
+                <span ng-if="!task.edited">{{task.TaskDate}}</span>
+            </div>
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Срок исполнения</label>
+            <div class="col-xs-4">
+                <input ng-if="task.edited" type="text" class="date-input form-control" ng-required="!task.isNew" ng-model="task.Deadline" ui-jq="datepicker" validator="date" placeholder="Выберите дату" />
+                <span ng-if="!task.edited">{{task.Deadline}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Ответственный исполнитель</label>
+            <div class="col-xs-4" ng-model="task.MainResponsible" ng-required="!task.isNew">
+                <select ng-if="task.edited"
+                        class="form-control"
+                        ng-required="!task.isNew"
+                        data-placeholder="Выберите ответственного исполнителя"
+                        chosen="{ 'enable_split_word_search': 'false', 'search_contains': 'true', 'no_results_text': 'Не найдено' }"
+                        ng-model="task.MainResponsible"
+                        ng-options="responsible.Title for responsible in TaskResponsibles track by responsible.Title">
+                    <option value=""></option>
+                </select>
+                <span ng-if="!task.edited">{{task.MainResponsible.Title}}</span>
+            </div>
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Дата снятия с контроля</label>
+            <div class="col-xs-4">
+                <input ng-if="task.edited" type="text" class="date-input form-control" ng-model="task.RemovedFromControlDate" ui-jq="datepicker" validator="date" placeholder="Выберите дату" />
+                <span ng-if="!task.edited">{{task.RemovedFromControlDate}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Исполнители</label>
+            <div class="col-xs-10">
+                <input
+                       ng-if="task.edited"
+                       type="hidden"
+                       ui-select2-sortable
+                       allow-clear='true'
+                       data-placeholder="Выберите исполнителей"
+                       multiple
+                       sortable
+                       ng-model="task.Responsibles"
+                       simple-query="getTaskResponsibles"
+                       to-id="getResponsibleId"
+                       to-text="getResponsibleTitle" />
+                <div ng-if="!task.edited">
+                    <div ng-repeat="responsible in task.Responsibles">{{responsible.Title}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Документ основание</label>
+            <div class="col-xs-10">
+                <docs-uploader edited="task.edited" files="task.baseDocumentFiles" single="true" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Отметка об исполнении</label>
+            <div class="col-xs-10" ng-if="task && task.edited">
+                <text-angular colspan="3" ng-model="task.ExecutionLog" ng-paste="handlePaste($event)"
+                              ta-toolbar="[['bold']]" />
+            </div>
+            <div class="col-xs-10" ng-if="task && !task.edited">
+                <text-angular ta-disabled="true"
+                              ng-model="task.ExecutionLog"
+                              ta-toolbar="[[]]" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Сведения о ходе исполнения</label>
+            <div class="col-xs-10" ng-if="task && task.edited">
+                <text-angular ng-model="task.ExecutionInfo" ng-paste="handlePaste($event)"
+                              ta-toolbar="[['bold']]" />
+            </div>
+            <div class="col-xs-10" ng-if="task && !task.edited">
+                <text-angular ta-disabled="true"
+                              ng-model="task.ExecutionInfo"
+                              ta-toolbar="[[]]" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Комментарии</label>
+            <div class="col-xs-10" ng-if="task && task.edited">
+                <text-angular class="task-comment" ng-model="task.Comment" ng-paste="handlePaste($event)"
+                              ta-toolbar="[['bold']]" />
+            </div>
+            <div class="col-xs-10" ng-if="task && !task.edited">
+                <text-angular class="task-comment" ta-disabled="true"
+                              ng-model="task.Comment"
+                              ta-toolbar="[[]]" />
+            </div>
+        </div>
+    </div>
+    <task-info task="task" />
+</div>

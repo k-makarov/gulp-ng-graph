@@ -1,0 +1,27 @@
+﻿<div ng-if="single && files && files.length" ng-repeat="file in files" class="link-item">
+    <a href="{{create('File', 'Download', { id: file.Id }).url}}">{{file.Title}}</a>
+    <i class="fa fa-times pointer color-red" ng-if="edited" title="Удалить" ng-click="remove(file)"></i>
+</div>
+<table ng-if="!single && files && files.length" class="table">
+    <thead>
+        <tr>
+            <th class="width-15">№</th>
+            <th class="width-150">Название документа</th>
+            <th class="width-30 center">{{edited ? 'Удалить' : '&nbsp;'}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="link-item-grid" ng-repeat="file in files">
+            <td>{{$index + 1}}</td>
+            <td>
+                <a href="{{create('File', 'Download', { id: file.Id }).url}}">{{file.Title}}</a>
+            </td>
+            <td class="center">
+                <i ng-if="edited" class="fa fa-times pointer color-red" title="Удалить" ng-click="remove(file)"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div ng-if="edited">
+    <button class="button-blue" type="button" ng-click="onShowDocumentRepositoryClick()" class="color blue">Прикрепить</button>
+</div>

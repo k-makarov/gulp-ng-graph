@@ -1,0 +1,234 @@
+﻿<div id="callsWidget" class="calls-widget">
+    <div>
+        <button class="button-call-create" onclick="document.CallsWidget.ShowCallCard()">
+            <span class="button-icon icon-plus"></span>Новый звонок
+        </button>
+        <div scroll-buttons="{ id: 'calls-widget', height: 180, classUp: 'calls-widget-scroll-up', classDown: 'calls-widget-scroll-down' }">
+            <table class="calls-widget-table">
+                <tbody id="callsWidgetList">
+                    <tr class="callsWidgetListTempl" onclick="document.CallsWidget.ShowCallCard(this.call)">
+                        <td class="calls-widget-table_label">
+                            <div class="call-icon {{call.type.color}}" data-toggle="popover"></div>
+                        </td>
+                        <td class="calls-widget-table_value">
+                            <div class="call-time">{{call.time.date}}</div>
+                            <div class="call-title">{{call.person}} {{call.purpose}}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="button-blue" onclick="location.href = GlobalContext.getUrl('calls')">Все звонки</button>
+    </div>
+
+    <div id="callInfo" style="display: none; position: relative">
+        <div>
+            <table>
+                <tr>
+                    <td colspan="3">
+                        <label class="callinfo-datetime"></label>
+                        <</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <label class="callinfo-datetime"></label>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <label class="callinfo-person"></label>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <label class="callinfo-Purpose"></label>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <label class="callinfo-status"></label>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="callCard">
+        <div class="c-call-card panel panel-default">
+            <div class="panel-heading">
+                <span class="popup-title col-xs-6 col-xs-push-3">Звонок</span>
+                <span class="icon-cross btn-close" ng-click="onCloseClick()"></span>
+            </div>
+            <div class="form-horizontal form-flat list-group">
+                <input id="CallCard-Id" type="hidden" value="0" />
+                <div class="list-group-item office-row">
+                    <div class="row">
+                        <div id="CallCard-Office" class="c-switcher col-xs-8 col-xs-push-2">
+                            <div data-val="Москва">Москва</div>
+                            <div data-val="Хабаровск">Хабаровск</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item" title="Время звонка">
+                    <div class="row">
+                         <span class="col-xs-1 col-xs-push-1 glyphicon glyphicon-calendar row-icon"></span>
+                        <div class="col-xs-9 col-xs-push-1">
+                            <input id="CallCard-Date" class="form-control" type="text" placeholder="Время звонка" />
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item" title="Телефон">
+                    <div class="row">
+                         <span class="col-xs-1 col-xs-push-1 glyphicon glyphicon-phone-alt row-icon"></span>
+                        <div class="col-xs-9 col-xs-push-1">
+                            <input id="CallCard-Phone" class="form-control" type="text" placeholder="Телефон" />
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item" title="Кто звонил">
+                    <div class="row">
+                         <span class="col-xs-1 col-xs-push-1 glyphicon glyphicon-user row-icon"></span>
+                        <div class="col-xs-9 col-xs-push-1">
+                            <input id="CallCard-Person" class="form-control" placeholder="Кто звонил" type="text" />
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item" title="По какой теме звонили">
+                    <div class="row">
+                         <span class="col-xs-1 col-xs-push-1 glyphicon glyphicon-question-sign row-icon"></span>
+                        <div class="col-xs-9 col-xs-push-1">
+                                <input id="CallCard-Purpose" class="form-control" type="text" placeholder="По какой теме звонили" />
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item" title="Результат звонка">
+                    <div class="row">
+                         <span class="col-xs-1 col-xs-push-1 glyphicon glyphicon-ok-sign row-icon"></span>
+                        <div class="col-xs-9 col-xs-push-1">
+                            <input id="CallCard-Result" class="form-control" type="text" placeholder="Результат звонка" />
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item comment-row" title="Комментарий">
+                    <div class="row">
+                         <span class="col-xs-1 col-xs-push-1 glyphicon glyphicon-info-sign row-icon"></span>
+                        <div class="col-xs-9 col-xs-push-1">
+                             <textarea placeholder="Комментарий" id="CallCard-Comment" rows="2" cols="30" maxlength="300"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <!--             <select id="CallCard-Status" class="form-control">
+                        <option id="CallStatus0" value="0">Поступил</option>
+                        <option id="CallStatus1" value="1">Ответил</option>
+                        <option id="CallStatus2" value="2">Соединить</option>
+                        <option id="CallStatus3" value="3">Не соединять</option>
+                        <option id="CallStatus4" value="4">Отложить</option>
+                    </select>-->
+                <div id="CallCard-Status" class="c-switcher call-status-switcher">
+                    <div data-val="0" class="glyphicon glyphicon-bell" title="Поступил"></div>
+                    <div data-val="1" class="glyphicon glyphicon-phone-alt" title="Ответил"></div>
+                    <div data-val="2" class="glyphicon glyphicon-ok" title="Соединить"></div>
+                    <div data-val="3" class="glyphicon glyphicon-remove" title="Не соединять"></div>
+                    <div data-val="4" class="glyphicon glyphicon-time" title="Отложить"></div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="callCard-btn btn-group">
+                    <button class="btn btn-default" id="CallCard-Save">Сохранить</button>
+                    <button class="btn btn-default" id="CallCard-Close">Закрыть</button>
+                    <button class="btn btn-default" id="CallCard-Delete">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--     <div id="callCard">
+        <div class="callCard" data-id="">
+            <input id="CallCard-Id" type="hidden" value="0" />
+            <div id="callCard-title" class="callCard-title"> Звонок </div>
+            <div class="callCard-office-label">
+                <div class="_label">
+                    <label for="CallCard-Office">Офис</label>
+                </div>
+                <div class="_value">
+                    <select id="CallCard-Office">
+                        <option id="msk" value="Москва">Москва</option>
+                        <option id="hab" value="Хабаровск">Хабаровск</option>
+                    </select>
+                </div>
+            <div class="callCard-date">
+                <label for="CallCard-Date">Время звонка</label>
+                <input id="CallCard-Date" type="text" />
+           
+                <input id="CallCard-Hour"  type="number" min="0" max="23" />
+                <input id="CallCard-Min" type="number" min="0" max="59" />
+           
+            </div>
+            <div class="callCard-phone">
+                <label>Телефон</label>
+                <input id="CallCard-Phone" type="text" />
+            </div>
+            <div class="callCard-person">
+                <label>Звонок от</label>
+                <input id="CallCard-Person" placeholder="Кто звонил" type="text" />
+            </div>
+            <div class="callCard-purpose">
+                <label>Тема</label>
+                <input id="CallCard-Purpose" type="text" placeholder="По какой теме звонили" />
+            </div>
+            <div class="callCard-status">
+                <label>Статус</label>
+                <select id="CallCard-Status">
+                    <option id="CallStatus0" value="0">Поступил</option>
+                    <option id="CallStatus1" value="1">Ответил</option>
+                    <option id="CallStatus2" value="2">Соединить</option>
+                    <option id="CallStatus3" value="3">Не соединять</option>
+                    <option id="CallStatus4" value="4">Отложить</option>
+                </select>
+            </div>
+            <div class="callCard-result">
+                <label>Результат</label>
+                <input id="CallCard-Result" type="text" placeholder="Результат звонка" />
+            </div>
+            <div class="callCard-сomment">
+                <label>Комментарий</label>
+                <textarea placeholder="" id="CallCard-Comment" rows="2" cols="30" maxlength="300"></textarea>
+            </div>
+            <div class="callCard-btn">
+                <button id="CallCard-Save">Сохранить</button>
+                <button id="CallCard-Close">Закрыть</button>
+                <button id="CallCard-Delete">Удалить</button>
+            </div>
+        </div>
+        </div>
+    </div>-->
+    <div id="callDecisionTemplate" class="c-callDecision">
+        <div class="callDecision">
+            <input class="c-CallDescription-Id" type="hidden" value="0" />
+            <div class="callDescription">
+                <div class="callDescription_time c-callDescription_time"></div>
+                <div class="callDescription_person c-callDescription_person"></div>
+                <div class="callDescription_purpose c-callDescription_purpose"></div>
+            </div>
+            <div class="btnDecision">
+                <button class="btnDecisionConnect c-callDecision-Connect"></button>
+                <button class="btnDecisionSetAside c-callDecision-SetAside"></button>
+                <button class="btnDecisionNotConnect c-callDecision-NotConnect"></button>
+            </div>
+            <div class="callDecisionResult">
+                <div class="callDecisionResultText">Принято решение</div>
+                <button class="callDecisionResultValue1 c-callDecisionResultValue"></button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

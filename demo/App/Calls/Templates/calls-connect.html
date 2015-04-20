@@ -1,0 +1,18 @@
+﻿<div id="callsConnectWidget" class="calls-connect-widget">
+    <div class="widget_head">СОЕДИНИТЬ</div>
+    <div scroll-buttons="{ id: 'calls-widget', height: 300, classUp: 'calls-widget-scroll-up', classDown: 'calls-widget-scroll-down' }">
+        <table class="calls-con-widget-table">
+            <tbody id="callsConWidgetList">
+                <tr class="callsConWidgetListTempl" onclick="document.CallsWidget.ShowCallCard(this.call)">
+                    <td class="calls-widget-table_label">
+                        <div class="call-icon {{call.type.color}}"></div>
+                    </td>
+                    <td class="calls-widget-table_value">
+                        <div class="call-time"> {{call.time.date}}</div>
+                        <div class="call-title">{{call.person}} {{call.purpose}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

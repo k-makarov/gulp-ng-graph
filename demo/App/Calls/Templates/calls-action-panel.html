@@ -1,0 +1,14 @@
+﻿<div class="row">
+    <div id="callsActionPanel" class="calls-action-widget col-xs-4 col-xs-push-8">
+        <div class="btn-group calls-action-daterange-filter-widget">
+            <div ng-repeat="filter in filters" class="c-filter-btn btn btn-default action-btn-up"
+                role="group"
+                title="{{filter.Title}}"
+                ng-class="{'selected' : filter.selected}"
+                ng-click="onFilterChange(filter, $event)">
+                {{filter.title}}
+            </div>
+        </div>
+    </div>
+</div>
+

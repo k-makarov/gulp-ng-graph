@@ -1,0 +1,19 @@
+﻿<div>
+    <div class="chart-block pie-chart">
+        <div class="chart-header">
+            Текущее состояние исполнения поручений
+        </div>
+        <highchart id="pieChart" config="analytics.pieChartConfig"></highchart>
+    </div>
+    <div class="chart-block bar-chart">
+        <div class="chart-header">
+            Распределение поручений, находящихся на контроле ответственных исполнителей
+        </div>
+        <highchart id="barChart" config="analytics.barChartConfig"></highchart>
+        <div class="toggle-responsibles-links-block">
+            <a ng-show="analytics.isMoreExist && !analytics.showAll" href="" ng-click="analytics.toggleResponsibles(true)" class="pseudo-link">По всем исполнителям…</a>
+            <a ng-show="analytics.showAll" href="" ng-click="analytics.toggleResponsibles(false)" class="pseudo-link">Скрыть</a>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>

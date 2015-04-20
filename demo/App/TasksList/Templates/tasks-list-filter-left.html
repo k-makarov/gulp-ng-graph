@@ -1,0 +1,19 @@
+﻿<div>
+    <div class="block">
+        <div class="widget_head">Виды поручений</div>
+        <div class="block-list">
+            <div class="pointer"
+                ng-class="{current: taskCategory == selected.taskCategory, 'sub-level': taskCategory.subLevel}"
+                ng-repeat="taskCategory in taskCategories"
+                ng-click="setSelectedTaskCategory(taskCategory)">{{taskCategory.title}}</div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="block-list">
+            <button class="button-gray-left-col"
+                 ng-class="{current: selected.taskKind.indexOf(taskKind) != -1}"
+                 ng-repeat="taskKind in taskKinds"
+                 ng-click="setSelectedTaskKind(taskKind)">{{taskKind.title}}</button>
+        </div>
+    </div>
+</div>

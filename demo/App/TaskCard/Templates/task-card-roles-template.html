@@ -1,0 +1,109 @@
+﻿<div ng-show="task && !loading">
+    <div class="card_content form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Вид поручения</label>
+            <div class="col-xs-4" ng-model="task.TaskType" ng-required="!task.isNew">
+                <select ng-if="task.edited"
+                        ng-required="!task.isNew"
+                        data-placeholder="Выберите вид поручения"
+                        chosen="{ 'enable_split_word_search': 'false', 'search_contains': 'true', 'no_results_text': 'Не найдено' }"
+                        ng-model="task.TaskType"
+                        ng-options="type.Title for type in TaskTypes track by type.Id">
+                    <option value=""></option>
+                </select>
+                <span ng-if="!task.edited">{{task.TaskType.Title}}</span>
+            </div>
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Категория поручения</label>
+            <div class="col-xs-4" ng-model="task.Category" ng-required="!task.isNew">
+                <select ng-if="task.edited"
+                        ng-required="!task.isNew"
+                        data-placeholder="Выберите категорию поручения"
+                        chosen="{ 'enable_split_word_search': 'false', 'search_contains': 'true', 'no_results_text': 'Не найдено' }"
+                        ng-model="task.Category"
+                        ng-options="category.Title for category in TaskCategories track by category.Id">
+                    <option value=""></option>
+                </select>
+                <span ng-if="!task.edited">{{task.Category.Title}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Тип поручения</label>
+            <div class="col-xs-4" ng-model="task.TaskKind" ng-required="!task.isNew">
+                <select ng-if="task.edited"
+                        ng-required="!task.isNew"
+                        data-placeholder="Выберите тип поручения"
+                        chosen="{ 'enable_split_word_search': 'false', 'search_contains': 'true', 'no_results_text': 'Не найдено' }"
+                        ng-model="task.TaskKind"
+                        ng-options="kind.Title for kind in TaskKinds track by kind.Id">
+                    <option value=""></option>
+                </select>
+                <span ng-if="!task.edited">{{task.TaskKind.Title}}</span>
+            </div>
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Автор поручения</label>
+            <div class="col-xs-4" ng-model="task.TaskAuthor" ng-required="!task.isNew">
+                <select ng-if="task.edited"
+                        ng-required="!task.isNew"
+                        data-placeholder="Выберите автора поручения"
+                        chosen="{ 'enable_split_word_search': 'false', 'search_contains': 'true', 'no_results_text': 'Не найдено' }"
+                        ng-model="task.TaskAuthor"
+                        ng-options="author.Title for author in TaskAuthors track by author.Id">
+                    <option value=""></option>
+                </select>
+                <span ng-if="!task.edited">{{task.TaskAuthor.Title}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Департамент</label>
+            <div class="col-xs-4">
+                <select ng-if="task.edited"
+                    data-placeholder="Выберите департамент поручения"
+                    chosen="{ 'enable_split_word_search': 'false', 'search_contains': 'true', 'allow_single_deselect': true, 'no_results_text': 'Не найдено' }"
+                    ng-model="task.Department"
+                    ng-options="department.Title for department in Departments track by department.Id"
+                    ng-change="onDepartmentChange(task.Department)">
+                    <option value=""></option>
+                </select>
+                <span ng-if="!task.edited">{{task.Department.Title}}</span>
+            </div>
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Директор департамента</label>
+            <div class="col-xs-4">
+                <input class="form-control" ng-if="task.edited" type="text" placeholder="Директор департамента" ng-model="task.Director.Title" ng-disabled="true" />
+                <span ng-if="!task.edited">{{task.Director.Title}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Куратор</label>
+            <div class="col-xs-4">
+                <select ng-if="task.edited"
+                    data-placeholder="Выберите куратора поручения"
+                    chosen="{ 'enable_split_word_search': 'false', 'search_contains': 'true', 'allow_single_deselect': true, 'no_results_text': 'Не найдено' }"
+                    ng-model="task.TaskCurator"
+                    ng-options="curator.Title for curator in TaskCurators track by curator.Id">
+                    <option value=""></option>
+                </select>
+                <span ng-if="!task.edited">{{task.TaskCurator.Title}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Доступ исполнителей</label>
+            <div class="col-xs-4">
+                <select ng-if="task.edited"
+                    multiple="multiple"
+                    data-placeholder="Выберите исполнителей"
+                    chosen="{ 'enable_split_word_search': 'false', 'search_contains': 'true', 'no_results_text': 'Не найдено' }"
+                    ng-model="task.ResponsiblesAccess"
+                    ng-options="responsible.Title for responsible in TaskResponsiblesAccess track by responsible.Id">
+                </select>
+                <div ng-if="!task.edited">
+                    <div ng-repeat="responsibleAccess in task.ResponsiblesAccess">{{responsibleAccess.Title}}</div>
+                </div>
+            </div>
+            <label class="col-xs-2" ng-class="{'control-label': task.edited}">Порядок сортировки</label>
+            <div class="col-xs-4">
+                <input class="form-control" ng-if="task.edited" type="text" ui-jq="numeric" placeholder="Введите порядок сортировки поручения" ng-model="task.SortOrder" />
+                <span ng-if="!task.edited">{{task.SortOrder}}</span>
+            </div>
+        </div>
+    </div>
+    <task-info task="task" />
+</div>

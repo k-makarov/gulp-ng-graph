@@ -1,0 +1,24 @@
+﻿<div ng-controller="TasksController">
+    <div class="filter-block">
+        <div class="tasks-list-filter-block">
+            <div tasks-list-filter params="filterParams" filter="filter"></div>
+            <div class="filter-buttons-block grouping-tasks-select">
+                <div class="tasks-list-view-select-container uppercase">
+                    <select ng-model="currentView"
+                            ng-options="view.title for view in views"
+                            chosen="{disable_search: true}">
+                    </select>
+                </div>
+                <div class="extend-filter-btn pointer" ng-click="filterParams.extended = !filterParams.extended">
+                    Расширенный поиск
+                    <span class="icon-expand-btn-white" ng-class="{expanded: filterParams.extended}"></span>
+                </div>
+                <button type="button" class="clear-filter-btn button-green"
+                    ng-show="!isFilterEmpty() && !filterParams.extended" ng-click="clearFilter()">
+                    Сбросить фильтры
+                </button>
+            </div>
+        </div>
+    </div>
+    <div tasks-grid params="gridParams" is-filter-extended="filterParams.extended"></div>
+</div>

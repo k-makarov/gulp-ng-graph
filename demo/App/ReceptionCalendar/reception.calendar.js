@@ -1,0 +1,1 @@
+﻿angular.module('reception.calendar', ['qtip', 'constants', 'routes', 'checkbox']);

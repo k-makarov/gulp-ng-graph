@@ -1,0 +1,35 @@
+﻿<div class="block">
+    <div class="widget_head widget-head-tasks-calendar">
+        <div class="widget-arrow-left" ng-click="previous()"></div>
+        <div class="tasks-calendar-month">{{getCurrentMonthName()}}</div>
+        <div class="tasks-calendar-year">{{currentYear}}</div>
+        <div class="widget-arrow-right" ng-click="next()"></div>
+    </div>
+    <div class="block-list">
+        <table class="tasks-calendar-table">
+            <tr class="tasks-calendar-week-header">
+                <td>пн</td>
+                <td>вт</td>
+                <td>ср</td>
+                <td>чт</td>
+                <td>пт</td>
+                <td>сб</td>
+                <td>вс</td>
+            </tr>
+            <tr class="tasks-calendar-week" ng-repeat="calendarWeek in calendarDays">
+                <td ng-repeat="calendarDay in calendarWeek track by $index">
+                    <div class="tasks-calendar-day"
+                        ng-class="getDayClass(calendarDay)"
+                        ng-click="onDayClick(calendarDay)">
+                        <div class="day">
+                            {{calendarDay.day}}
+                        </div>
+                        <div class="tasks-count" ng-show="calendarDay.data.TasksCount">
+                            <div class="task-count-content">{{calendarDay.data.TasksCount}}</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

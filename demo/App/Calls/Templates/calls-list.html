@@ -1,0 +1,73 @@
+﻿<div ng-controller="CallsController">
+    <div class="filter-block">
+        <form name="taskFilterForm">
+            <div class="filter-top-row">
+                <div class="filter search-task">
+                    <input type="text" name="searchText"
+                           ng-model="CallsFilter.SearchText" placeholder="ПОИСК ЗВОНКОВ">
+                    <label for="searchTask">
+                        <span class="search-task-icon"></span>
+                    </label>
+                </div>
+                <div class="filter filter-top-row-buttons">
+                    <button type="button"
+                            class="button-green" access="assistant"
+                            onclick="document.CallsWidget.ShowCallCard()"    >
+                            <span class="button-icon icon-plus"></span>
+                            Внести звонок
+                    </button>
+                    <button type="button" ng-disabled="taskFilterForm.$invalid" ng-click="export()"
+                            class="white uppercase filter-export-button" style="display:none;">
+                        <span class="button-icon"></span>
+                        Экспорт
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="filter-buttons-block">
+            <div class="row">
+                <div class="col-md-2 call-filter-btn ">
+                    <input type="checkbox" id="rejected-filter-chb" ng-model="CallsFilter.Declined" />
+                    <label for="rejected-filter-chb">
+                        <span class="btnRound"></span><span>Отклоненные</span>
+                    </label>
+                </div>
+                <div class="col-md-2 call-filter-btn">
+                    <input type="checkbox" id="accepted-filter-chb" ng-model="CallsFilter.Accepted" />
+                    <label for="accepted-filter-chb">
+                        <span class="btnRound"></span><span>Принятые</span>
+                    </label>
+                </div>
+                <div class="col-md-2 call-filter-btn">
+                    <input type="checkbox" id="requiring-attention-filter-chb" ng-model="CallsFilter.Important" />
+                    <label for="requiring-attention-filter-chb">
+                        <span class="btnRound"></span><span>Требующие внимания</span>
+                    </label>
+                </div>
+                <div class="call-filter-period" style="display:none">
+                    <div>
+                        <input id="call-filter-period-week" type="radio" name="call-filter-period" value="week">
+                        <label for="call-filter-period-week">
+                            <span class="call-filter-period-week">НЕДЕЛЯ</span>
+                        </label>
+                    </div>
+                    <div>
+                        <input id="call-filter-period-month" type="radio" name="call-filter-period" value="month">
+                        <label for="call-filter-period-month">
+                            <span class="call-filter-period-month">МЕСЯЦ</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="extend-filter-btn pointer row" ng-click="filterParams.extended = !filterParams.extended" style="display:none">
+                        Расширенный поиск
+                        <span class="icon-expand-btn-white" ng-class="{expanded: filterParams.extended}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <div calls-action-panel></div>
+    <div class="col-xs-12" calls-grid params="{filter: CallsFilter}"></div>
+</div>

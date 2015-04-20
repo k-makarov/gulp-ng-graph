@@ -1,0 +1,57 @@
+﻿<form class="rm_form">
+	<div class="rm_head">
+		<h4>Настройки отчета</h4>
+	</div>
+	<div class="rm_body">
+		<div  class="rm_top">
+			<div ng-repeat="reportType in controller.reportTypes">
+				<input name="report-type" class="hide rm_rcinp" type="radio" id="report-type-{{reportType.Value}}" ng-value="{{reportType.Value}}" ng-model="controller.model.ReportType" radio/>
+				<label for="report-type-{{reportType.Value}}" ng-bind="reportType.Description"></label>
+			</div>
+		</div>
+	    <div class="rm_params" ng-if="controller.model.ReportType === controller.reportTypesEnum.Event">
+	        <span class="rm_sp">Срок исполнения:</span>
+			
+	        <div class="rm_inps">
+	            <div class="reception-info-print-dialog-param rm_date_con">
+	                <input type="text" placeholder="с" ui-jq="datepicker" ng-readonly="true" ng-model="controller.model.ReportParams.Start" />
+	            </div>
+	            <div class="reception-info-print-dialog-param rm_date_con">
+	                <input type="text" placeholder="по" ui-jq="datepicker" ng-readonly="true" ng-model="controller.model.ReportParams.End" />
+	            </div>
+	        </div>
+			
+	        <div class="reception-info-print-dialog-param">
+	            <label class="rm_lbl" for="with-performed-tasks-report-cb">
+	                <input id="with-performed-tasks-report-cb" type="checkbox" ng-model="controller.model.ReportParams.WithPerformedTasks" checkbox/>
+	                <span class="rm_sptxt">Печатать исполненные задания</span>
+	            </label>
+	        </div>
+	        <div class="reception-info-print-dialog-param">
+	            <label class="rm_lbl" for="with-birthdays-report-cb">
+	                <input id="with-birthdays-report-cb" type="checkbox" ng-model="controller.model.ReportParams.WithBirthdays" checkbox/>
+	                <span class="rm_sptxt">Печатать информацию<br> о днях рождениях</span>
+	            </label>
+	        </div>
+	    </div>
+	    <div class="rm_params" ng-if="controller.model.ReportType === controller.reportTypesEnum.MonthEvents">
+	        <div class="rm_inps">
+	            <div class="reception-info-print-dialog-param rm_date_con">
+	                <input 
+	                    type="text"
+                        class="monthpicker-input" 
+	                    placeholder="Месяц" 
+	                    ui-jq="monthpicker" 
+	                    ui-options='{"id": "monthpicker-report-month-events", "monthNames": ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"], "pattern": "mmm yyyy", "startYear": 2014, "finalYear": 2024}' 
+	                    ng-readonly="true" 
+	                    monthpicker-slider
+                        monthpicker-slider-for="monthpicker-report-month-events"
+	                    ng-model="controller.model.ReportParams.MonthYear" />
+	            </div>
+	        </div>    	        
+	    </div>
+		<div class="reception-info-print-dialog-buttons">
+			<button class="button-blue short-button rm_btnsave" type="button" ng-click="controller.onPrintClick()">СОХРАНИТЬ</button>
+		</div>
+	</div>
+</form>

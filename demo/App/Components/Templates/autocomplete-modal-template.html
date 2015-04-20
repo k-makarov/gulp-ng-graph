@@ -1,0 +1,17 @@
+﻿<div class="ngdialog-message">
+    <h4>{{Title}}</h4>
+</div>
+<angucomplete pause="{{Autocomplete.pause}}"
+              id="{{Autocomplete.id}}"
+              inputclass="{{Autocomplete.inputclass}}"
+              selectedobject="selectedObject"
+              url="{{Autocomplete.url}}"
+              searchfields="{{Autocomplete.searchfields}}"
+              titlefield="{{Autocomplete.titlefield}}"
+              minlength="{{Autocomplete.minlength}}"
+              searchingplaceholder="Поиск..."
+              noresultsplaceholder="Не найдено"
+              placeholder="{{Autocomplete.placeholder}}"/>
+<div>
+    <button class="button-blue" ng-click="closeThisDialog(selectedObject)">Выбрать</button>
+</div>
