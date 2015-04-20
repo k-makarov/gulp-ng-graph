@@ -1,35 +1,43 @@
 {
-  "name": "gulp-ng-graph",
-  "version": "0.0.1",
-  "description": "gulp plugin for building graph of angular modules relations",
-  "main": "index.js",
-  "keywords": [
-    "angular",
-    "module",
-    "modules",
-    "graph",
-    "dependencies"
-  ],
-  "author": "k.makarov <k.makarov.box@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "expectations": "^0.4.2",
-    "graphviz": "0.0.8",
-    "gulp": "^3.8.11",
-    "gulp-jshint": "^1.10.0",
-    "gulp-mocha": "^2.0.1",
-    "gulp-util": "^3.0.4",
-    "jade": "^1.9.2",
-    "jshint-stylish": "^1.0.1",
-    "mocha": "^2.2.4",
-    "mocha-unfunk-reporter": "^0.4.0",
-    "through2": "^0.6.5",
-    "underscore": "^1.8.3"
-  },
-  "dependencies": {
-    "graphviz": "0.0.8",
-    "jade": "^1.9.2",
-    "underscore": "^1.8.3",
-    "vinyl": "^0.4.6"
-  }
+    "name": "gulp-ng-graph",
+    "version": "0.0.1",
+    "description": "gulp plugin for building graph of angular modules relations",
+    "main": "index.js",
+    "keywords": [
+        "angular",
+        "module",
+        "modules",
+        "graph",
+        "dependencies"
+    ],
+    "author": "k.makarov <k.makarov.box@gmail.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/k-makarov/gulp-ng-graph"
+    },
+    "bugs": {
+        "url": "https://github.com/k-makarov/gulp-ng-graph/issues",
+        "email": "k.makarov.box@gmail.com"
+    },
+    "devDependencies": {
+        "expectations": "^0.4.2",
+        "graphviz": "0.0.8",
+        "gulp": "^3.8.11",
+        "gulp-jshint": "^1.10.0",
+        "gulp-mocha": "^2.0.1",
+        "gulp-util": "^3.0.4",
+        "jade": "^1.9.2",
+        "jshint-stylish": "^1.0.1",
+        "mocha": "^2.2.4",
+        "mocha-unfunk-reporter": "^0.4.0",
+        "through2": "^0.6.5",
+        "underscore": "^1.8.3"
+    },
+    "dependencies": {
+        "graphviz": "0.0.8",
+        "jade": "^1.9.2",
+        "underscore": "^1.8.3",
+        "vinyl": "^0.4.6"
+    }
 }
