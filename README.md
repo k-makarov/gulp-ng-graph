@@ -11,6 +11,21 @@ more complex...
 and more...
 ![Some simple project](https://github.com/k-makarov/gulp-ng-graph/blob/master/demo/screenshots/result3.png)
 
+## Usage
+
+```
+var gulp = require('gulp'),
+    ngGraph = require('gulp-ng-graph');
+
+gulp.task('default', function() {
+    return gulp.src(['./App/**/*.js'])
+        .pipe(ngGraph())
+        .pipe(gulp.dest('./graph/'));
+});
+```
+
+
+
 ## Features
 - zoom
 - drag
