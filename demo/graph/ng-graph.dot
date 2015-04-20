@@ -12,10 +12,10 @@ digraph ngGraph {
   "customScroll";
   "custom.checkbox";
   "checkbox";
-  "sitenav";
-  "clock";
   "routes";
   "constants";
+  "sitenav";
+  "clock";
   "validator";
   "interceptors";
   "includeReplace";
