@@ -11,6 +11,11 @@ more complex...
 and more...
 ![Some simple project](https://github.com/k-makarov/gulp-ng-graph/blob/master/demo/screenshots/result3.png)
 
+## Install
+```
+npm install gulp-ng-graph
+```
+
 ## Usage
 
 ```
