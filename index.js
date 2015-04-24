@@ -10,14 +10,20 @@ module.exports = function(options) {
     var graphVisualizer;
 
     options = options || {};
+    if (!modulesReader) {
+        modulesReader = new ModulesReader();
+    }
+    if (!graphBuilder) {
+        graphBuilder = new GraphBuilder();
+    }
+    if (!graphVisualizer) {
+        graphVisualizer = new GraphVisualizer();
+    }
 
     function bufferContents(file, enc, callback) {
         if (file.isStream()) {
             this.emit('error', new gutil.PluginError('gulp-ng-graph', 'Streams are not supported!'));
             return callback();
-        }
-        if (!modulesReader) {
-            modulesReader = new ModulesReader();
         }
         if (file.isBuffer()) {
             modulesReader.read(file.contents, enc);
@@ -26,13 +32,10 @@ module.exports = function(options) {
     }
 
     function endStream(callback) {
-        if (!graphBuilder) {
-            graphBuilder = new GraphBuilder();
-        }
-        if (!graphVisualizer) {
-            graphVisualizer = new GraphVisualizer();
-        }
         var modules = modulesReader.getModules();
+        if (!modules || !modules.length) {
+            return;
+        }
         var builderData = graphBuilder.build({
             modules: modules,
             dot: options.dot || 'ng-graph.dot',
