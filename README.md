@@ -27,6 +27,19 @@ gulp.task('default', function() {
         .pipe(ngGraph())
         .pipe(gulp.dest('./graph/'));
 });
+
+
+You can also pass options to rename default files ng-graph.dot and ng-graph.html:
+
+gulp.task('default', function() {
+    return gulp.src(['./App/**/*.js'])
+        .pipe(ngGraph({
+        	dot: 'my-angular-project-graph.dot',
+        	html: 'my-angular-project.html'
+        }))
+        .pipe(gulp.dest('./graph/'));
+});
+
 ```
 
 

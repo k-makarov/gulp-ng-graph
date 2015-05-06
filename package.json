@@ -1,9 +1,10 @@
 {
   "name": "gulp-ng-graph",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "gulp plugin for building graph of angular modules relations",
   "main": "index.js",
   "keywords": [
+    "gulpplugin",
     "angular",
     "module",
     "modules",
@@ -25,7 +26,6 @@
     "gulp": "^3.8.11",
     "gulp-jshint": "^1.10.0",
     "gulp-mocha": "^2.0.1",
-    "jade": "^1.9.2",
     "jshint-stylish": "^1.0.1",
     "mocha": "^2.2.4",
     "mocha-unfunk-reporter": "^0.4.0"
