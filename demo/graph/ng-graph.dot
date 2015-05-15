@@ -22,7 +22,6 @@ digraph ngGraph {
   "element.required";
   "access";
   "tags";
-  "call.notifications.widget";
   "tasks.list";
   "tasks.calendar";
   "task.card";
@@ -37,6 +36,7 @@ digraph ngGraph {
   "calls";
   "calls.list";
   "calls.join.widget";
+  "call.notifications.widget";
   "analytics";
   "admin";
   "activities";

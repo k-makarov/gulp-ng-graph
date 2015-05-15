@@ -23,6 +23,17 @@ html
 				.attr('width', '100%')
 				.attr('height', '98%')
 				.attr('fill', 'white');
+			visual.append('svg:marker')
+				.attr('id', 'link-marker')
+				.attr('viewBox', '0 -5 10 10')
+			    .attr('refX', 21)
+			    .attr('refY', 0)
+			    .attr('markerWidth', 4)
+			    .attr('markerHeight', 6)
+			    .attr('orient', 'auto')
+			  .append('svg:path')
+			    .attr('d', 'M0,-5L10,0L0,5')
+			    .attr('stroke', 'white');
 			function redraw() {
 				visual.attr('transform', 'translate(' + d3.event.translate + ')'+ ' scale(' + d3.event.scale + ')');
 			}
@@ -39,9 +50,12 @@ html
 			    	.data(graph.links)
 			    	.enter().append('line')
 			    	.attr('class', 'link')
-			    	.style('stroke-width', function(d) {
-			        	return Math.sqrt(d.value);
-			    	});
+			    	.attr('marker-end', 'url(#link-marker)')
+			    	.attr('stroke-width', '2px')
+			    	//- .style('stroke-width', function(d) {
+			     //-    	return Math.sqrt(d.value);
+			    	//- });
+			 	
 				var node = visual.selectAll('.node')
 			    	.data(graph.nodes)
 			    	.enter().append('g')
