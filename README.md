@@ -2,6 +2,7 @@
 ## Wtf?
 Gulp plugin for building graph of angular modules relations.
 
+
 It renders a html file with some d3.js script that visualize all finded angular modules with dependecies. Also it renders .dot file that you can visualize by yourself (by example with [Graphviz](http://www.graphviz.org/))
 
 ## Examples
